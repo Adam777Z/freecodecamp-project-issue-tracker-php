@@ -670,8 +670,7 @@ function delete_issue( $id ) {
 	$sth = $db->prepare( 'DELETE FROM issues WHERE id = :id' );
 	return $sth->execute( $data );
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -682,7 +681,7 @@ function delete_issue( $id ) {
 	<link rel="icon" type="image/x-icon" href="<?php echo $path_prefix; ?>favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/style.min.css">
 	<script src="<?php echo $path_prefix; ?>assets/js/script.min.js"></script>
 </head>
 
