@@ -670,7 +670,8 @@ function delete_issue( $id ) {
 		'id' => (int) $id,
 	];
 	$sth = $db->prepare( 'DELETE FROM issues WHERE id = :id' );
-	return $sth->execute( $data );
+	$sth->execute( $data );
+	return (bool) $sth->rowCount();
 }
 ?><!DOCTYPE html>
 <html lang="en">
