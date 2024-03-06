@@ -262,7 +262,7 @@ if ( isset( $_SERVER['PATH_INFO'] ) ) {
 				$data['open'] === true
 			),
 		];
-		$id1 = $data['id'];
+		$id1 = (int) $data['id'];
 
 		$send_data = [
 			'issue_title' => 'Title 2',
@@ -307,7 +307,7 @@ if ( isset( $_SERVER['PATH_INFO'] ) ) {
 				$data['open'] === true
 			),
 		];
-		$id2 = $data['id'];
+		$id2 = (int) $data['id'];
 
 		$send_data = [];
 		$data = post_api_data( "/api/issues/$project", $send_data );
@@ -597,6 +597,7 @@ function get_issue( $id ) {
 	$result = $query->fetchAll( PDO::FETCH_ASSOC );
 
 	if ( $result ) {
+		$result[0]['id'] = (int) $result[0]['id'];
 		$result[0]['open'] = (bool) $result[0]['open'];
 	}
 
@@ -619,6 +620,7 @@ function get_issues( $project, $params = [] ) {
 
 	if ( $result ) {
 		foreach ( $result as $key => $value ) {
+			$result[$key]['id'] = (int) $result[$key]['id'];
 			$result[$key]['open'] = (bool) $result[$key]['open'];
 		}
 	}
@@ -648,7 +650,7 @@ function update_issue( $id, $issue_title, $issue_text, $created_by, $assigned_to
 	global $db;
 
 	$data = [
-		'id' => $id,
+		'id' => (int) $id,
 		'issue_title' => $issue_title,
 		'issue_text' => $issue_text,
 		'created_by' => $created_by,
@@ -665,7 +667,7 @@ function delete_issue( $id ) {
 	global $db;
 
 	$data = [
-		'id' => $id,
+		'id' => (int) $id,
 	];
 	$sth = $db->prepare( 'DELETE FROM issues WHERE id = :id' );
 	return $sth->execute( $data );
